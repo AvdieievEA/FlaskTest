@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Flask service
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <form method="post" action="http://127.0.0.1:5000">
+        <input type="text" name="amount" id="amount"><br>
+        <select name="currency" id="currency">
+            <option value={{ CURRENCY_EUR }}>Евро</option>
+            <option value={{ CURRENCY_USD }}>Доллар США</option>
+            <option value={{ CURRENCY_RUB }}>Российский Рубль</option>
+        </select><br>
+        <textarea name="description" id="description"></textarea><br>
+        <input type="submit"/>
+    </form>
+</div>
+<!--<script>-->
+
+<!--</script>-->
+{% endblock %}

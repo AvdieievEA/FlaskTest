@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Flask service
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <form name="Pay" method="post" action="https://pay.piastrix.com/ru/pay" accept-charset="UTF-8">
+        <input type="hidden" name="amount" value={{ amount }}>
+        <input type="hidden" name="currency" value={{ currency }}>
+        <input type="hidden" name="shop_id" value={{ shop_id }}>
+        <input type="hidden" name="shop_order_id" value={{ index }}>
+        <input type="hidden" name="sign" value={{ hex_digest }}>
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}
