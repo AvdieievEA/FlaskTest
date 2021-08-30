@@ -2,7 +2,7 @@ import hashlib
 from datetime import datetime
 
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, DateTime, Integer, String, Text
 
@@ -80,7 +80,8 @@ def process_payment():
             "sign": hashlib.sha256(sign.encode("utf-8")).hexdigest(),
         }
         response = requests.post("https://core.piastrix.com/bill/create", json=data)
-        return response.json()
+        url = response.json()['data']['url']
+        return redirect(url)
     elif user_request.currency == str(CURRENCY_RUB):
         sign = (
             f"{user_request.amount}:{user_request.currency}:{PAYWAY}:{SHOP_ID}:{user_request.shop_order_id}{SECRET_KEY}"
